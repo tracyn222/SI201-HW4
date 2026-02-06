@@ -152,11 +152,33 @@ class Library:
 
         self.transaction_log.append((patron_id, book_id, "checkout", True))
         return True
-    
-      
-       
 
     def return_book(self, patron_id, book_id):
+        patron = None
+        for p in self.patrons:
+            if p.patron_id == patron_id:
+                patron = p
+                break
+
+        book = None
+        for b in self.books:
+            if b.book_id == book_id:
+                book = b
+                break
+        
+        if patron is None or book is None:
+            self.transaction_log.append((patron_id, book_id, "return", False))
+            return False
+        
+        if book not in patron.checked_out_books:
+            self.transaction_log.append((patron_id, book_id, "return", False))
+            return False
+        
+        patron.checked_out_books.remove(book)
+        book.is_checked_out = False
+
+        self.transaction_log.append((patron_id, book_id, "return", True))
+        return True
         '''
         ARGUMENTS:
             self: the current object
@@ -166,14 +188,7 @@ class Library:
         RETURNS: a Boolean value (True or False)
         '''
 
-        # TODO: Implement return logic following the instructions
-        # ==============================
-        # YOUR CODE STARTS HERE
-        # ==============================
-        pass
-        # ==============================
-        # YOUR CODE ENDS HERE
-        # ==============================
+        
 
     def count_successful_checkouts(self):
         '''
