@@ -2,13 +2,13 @@
 # Your name: Yuhei Ni
 # Your student id: 04647754
 # Your email: yuheini@umich.edu
-# Who or what you worked with on this homework (including generative AI like ChatGPT):
+# Who or what you worked with on this homework (including generative AI like ChatGPT): Linnet Xinyi Peng and ChatGPT
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.:
-# Asked ChatGPT for hints on debugging and for suggestions on overall code structure
+# e.g.: 
+# I used Chatgpt to tell me the steps on how to set up terminal and also what to do for the terminal after implement each function
 #
 # Did your use of GenAI on this assignment align with your goals and guidelines in your Gen AI contract? If not, why?
-#
+# No, i didn't use GenAI because I don't use GenAI
 # --- ARGUMENTS & EXPECTED RETURN VALUES PROVIDED --- #
 # --- SEE INSTRUCTIONS FOR FULL DETAILS ON METHOD IMPLEMENTATION --- #
 
