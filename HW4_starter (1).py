@@ -188,8 +188,6 @@ class Library:
         RETURNS: a Boolean value (True or False)
         '''
 
-        
-
     def count_successful_checkouts(self):
         '''
         ARGUMENTS:
@@ -199,14 +197,11 @@ class Library:
             a dictionary mapping each book_id to the number of times that book
             has been successfully checked out
         '''
-        # TODO: Implement count_successful_checkouts() following the instructions
-        # ==============================
-        # YOUR CODE STARTS HERE
-        # ==============================
-        pass
-        # ==============================
-        # YOUR CODE ENDS HERE
-        # ==============================
+        counts = {}
+        for patron_id, book_id, action, success in self.transaction_log:
+            if action == "checkout" and success is True:
+                counts[book_id] = counts.get(book_id, 0) + 1
+        return counts
 
     # Extra Credit
     def return_all_books(self, patron_id):
