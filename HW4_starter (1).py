@@ -322,15 +322,13 @@ class TestAllMethods(unittest.TestCase):
         self.assertEqual(self.library.transaction_log[-1], (1, 999, "return", False))
 
     def test_library_return_book_not_checked_out_by_patron(self):
-        # Scenario: The book was not checked out by the patron.
-        # TODO: implement test_library_return_book_not_checked_out_by_patron() following the instructions
-        # ==============================
-        # YOUR CODE STARTS HERE
-        # ==============================
-        pass
-        # ==============================
-        # YOUR CODE ENDS HERE
-        # ==============================
+        self.assertTrue(self.library.checkout_book(2, 101))
+        self.assertTrue(self.book1.is_checked_out)
+        self.assertIn(self.book1, self.patron2.checked_out_books)
+
+        self.assertFalse(self.library.return_book(1, 101))
+
+        self.assertEqual(self.library.transaction_log[-1], (1, 101, "return", False))
 
     # test count_successful_checkouts
     def test_count_successful_checkouts(self):
