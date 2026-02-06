@@ -205,6 +205,22 @@ class Library:
 
     # Extra Credit
     def return_all_books(self, patron_id):
+        patron = None
+        for p in self.patrons:
+            if p.partron_id == patron_id:
+                patron = p
+                break
+        
+        if patron is None:
+            return False
+        
+        if len(patron.checked_out_books) == 0:
+            return False
+        returned_any = False
+
+        for book in list(patron.checked_out_books):
+            if self.return_book(patron_id, book.book_id):
+                returned_any = True
         '''
         ARGUMENTS:
             self: the current object
@@ -213,15 +229,7 @@ class Library:
         RETURNS: a Boolean value (True or False)
         '''
 
-        # TODO (bonus): implement return_all_books() method following the instructions
-        # ==============================
-        # YOUR CODE STARTS HERE
-        # ==============================
-        pass
-        # ==============================
-        # YOUR CODE ENDS HERE
-        # ==============================
-
+        
 
 class TestAllMethods(unittest.TestCase):
 
@@ -351,23 +359,23 @@ class TestAllMethods(unittest.TestCase):
 
     # test return_all_books
     # TODO (bonus): Uncomment the following test cases when you are ready to test the return_all_books method
-    # def test_return_all_books(self):
-    #     self.library.checkout_book(1, 101)
-    #     self.library.checkout_book(1, 102)
+    def test_return_all_books(self):
+        self.library.checkout_book(1, 101)
+        self.library.checkout_book(1, 102)
 
-    #     self.assertTrue(self.library.return_all_books(1))
-    #     self.assertEqual(self.patron1.checked_out_books, [])
-    #     self.assertFalse(self.book1.is_checked_out)
-    #     self.assertFalse(self.book2.is_checked_out)
+        self.assertTrue(self.library.return_all_books(1))
+        self.assertEqual(self.patron1.checked_out_books, [])
+        self.assertFalse(self.book1.is_checked_out)
+        self.assertFalse(self.book2.is_checked_out)
 
-    #     self.assertIn((1, 101, "return", True), self.library.transaction_log)
-    #     self.assertIn((1, 102, "return", True), self.library.transaction_log)
+        self.assertIn((1, 101, "return", True), self.library.transaction_log)
+        self.assertIn((1, 102, "return", True), self.library.transaction_log)
 
-    # def test_return_all_books_nonexistent_patron(self):
-    #     self.assertFalse(self.library.return_all_books(999))
+    def test_return_all_books_nonexistent_patron(self):
+        self.assertFalse(self.library.return_all_books(999))
 
-    # def test_return_all_books_patron_has_no_checked_out_books(self):
-    #     self.assertFalse(self.library.return_all_books(1))
+    def test_return_all_books_patron_has_no_checked_out_books(self):
+        self.assertFalse(self.library.return_all_books(1))
 
 
 if __name__ == "__main__":
