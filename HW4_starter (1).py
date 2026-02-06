@@ -207,7 +207,7 @@ class Library:
     def return_all_books(self, patron_id):
         patron = None
         for p in self.patrons:
-            if p.partron_id == patron_id:
+            if p.patron_id == patron_id:
                 patron = p
                 break
         
@@ -216,11 +216,14 @@ class Library:
         
         if len(patron.checked_out_books) == 0:
             return False
+        
         returned_any = False
 
         for book in list(patron.checked_out_books):
             if self.return_book(patron_id, book.book_id):
                 returned_any = True
+
+        return returned_any
         '''
         ARGUMENTS:
             self: the current object
