@@ -192,7 +192,14 @@ class TestTickets(unittest.TestCase):
         # UNCOMMENT THE PRINT LINE BELOW TO SEE A SUMMARY OF YOUR TICKETS 
         # print(ticket2,ticket3,ticket4)
         
-        # YOUR CODE HERE
+        self.assertEqual(ticket2.venue,"MoMA")
+        self.assertEqual(ticket2.special_exhibit, "Emerging Ecologies: Architecture and the Environment From the Collection: 1960-1969")
+
+        self.assertEqual(ticket2.applyDiscount("Memeber"), 0)
+
+        self.assertAlmostEqual(ticket3.applyDiscount("Corporate"), 31.5)
+
+        self.assertAlmostEqual(ticket4.applyDiscount("Out-of-State"), 40.25)
 
 
 def main():
