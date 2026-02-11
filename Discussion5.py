@@ -78,8 +78,13 @@ class MuseumTicket(Ticket):
         # Apply 15% surcharge (extra cost) if buyer type is Out-of-State
         # Return original price if buyer_type is NY Resident
         
-        # YOUR CODE HERE
-        pass
+        if buyer_type == "Member":
+            self.price = 0
+        elif buyer_type == "Copoerate":
+            self.price = self.price * (1-0.10)
+        elif buyer_type == "Out-of-State":
+            self.price = self.price * (1+0.15)
+        return self.price
 
     def __str__(self):
         return f"--------------------------------\n\
