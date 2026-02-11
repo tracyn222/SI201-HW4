@@ -137,8 +137,16 @@ class TestTickets(unittest.TestCase):
         # 3.B Check the keys in position_dict exist
         # 3.C Check the key value pairs in position_dict
         
-        # YOUR CODE HERE
+        self.assertEqual(ticket.venue,"Michigan Theater")
+        self.assertEqual(ticket.title, "3 Idiots")
 
+        self.assertIn("Hall", ticket.position_dict)
+        self.assertIn("Row", ticket.position_dict)
+        self.assertIn("Seat", ticket.position_dict)
+
+        self.assertEqual(ticket.position_dict["Hall"],4)
+        self.assertEqual(ticket.position_dict["Row"],"G")
+        self.assertEqual(ticket.position_dict["Seat"],"23")
 
         # checking if discounts get applied correctly
         self.assertEqual(ticket.price, 20)
